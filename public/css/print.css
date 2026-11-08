@@ -1,0 +1,56 @@
+/* Struk thermal 58 mm: lebar area cetak sekitar 48 mm. */
+@page {
+    size: 58mm 200mm;
+    margin: 0;
+}
+
+body {
+    margin: 0;
+    background: #fff;
+}
+
+.struk {
+    width: 48mm;
+    margin: 0 auto;
+    padding: 2mm 0;
+    font-family: "Courier New", monospace;
+    font-size: 9pt;
+    line-height: 1.3;
+    color: #000;
+}
+
+.toolbar {
+    padding: 8px;
+    text-align: center;
+}
+
+.toolbar button {
+    min-height: 32px;
+    margin: 0 4px;
+}
+
+@media print {
+    .no-print {
+        display: none !important;
+    }
+}
+
+.center {
+    text-align: center;
+}
+
+.row-line {
+    display: flex;
+    justify-content: space-between;
+    gap: 2mm;
+}
+
+.sub {
+    padding-left: 3mm;
+}
+
+hr {
+    border: 0;
+    border-top: 1px dashed #000;
+    margin: 2mm 0;
+}

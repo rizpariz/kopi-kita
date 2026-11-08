@@ -1,0 +1,2521 @@
+/* CSS Kopi & Kita di atas Bootstrap 5.3.
+   Bagian awal file ini: tata letak dasar tiap halaman (menu, keranjang, pesanan, antrean, admin).
+   Bagian TEMA di bawah: warna, huruf, dan gaya majalah editorial yang menimpa nilai dasar ini. */
+
+:root {
+    --kk-display: system-ui, sans-serif;
+    --kk-aren: #8a4b14;
+    --kk-foam: #f7f2ed;
+    --kk-line: #e6dcd2;
+    --bs-body-color: #2b1e17;
+    --kk-brown: #6b4e3d;
+    --kk-brown-dark: #4b3024;
+    --kk-cream: #f3ebe1;
+    --bs-primary: #6b4e3d;
+    --bs-primary-rgb: 107, 78, 61;
+    --bs-link-color: #6b4e3d;
+    --bs-link-color-rgb: 107, 78, 61;
+    --bs-link-hover-color: #4b3024;
+    --bs-link-hover-color-rgb: 75, 48, 36;
+}
+
+body {
+    background-color: #fff;
+}
+
+.kk-navbar {
+    background-color: var(--kk-brown-dark);
+}
+
+.btn-primary {
+    --bs-btn-bg: var(--kk-brown);
+    --bs-btn-border-color: var(--kk-brown);
+    --bs-btn-hover-bg: var(--kk-brown-dark);
+    --bs-btn-hover-border-color: var(--kk-brown-dark);
+    --bs-btn-active-bg: var(--kk-brown-dark);
+    --bs-btn-active-border-color: var(--kk-brown-dark);
+    --bs-btn-disabled-bg: var(--kk-brown);
+    --bs-btn-disabled-border-color: var(--kk-brown);
+}
+
+.btn-outline-primary {
+    --bs-btn-color: var(--kk-brown);
+    --bs-btn-border-color: var(--kk-brown);
+    --bs-btn-hover-bg: var(--kk-brown);
+    --bs-btn-hover-border-color: var(--kk-brown);
+    --bs-btn-active-bg: var(--kk-brown-dark);
+    --bs-btn-active-border-color: var(--kk-brown-dark);
+}
+
+.kk-lead {
+    max-width: 36rem;
+}
+
+/* Fokus selalu terlihat dan target sentuh minimal 24 x 24 px (WCAG 2.2 SC 2.4.7 dan 2.5.8). */
+:focus-visible {
+    outline: 3px solid var(--kk-brown);
+    outline-offset: 2px;
+}
+
+.btn,
+.nav-link {
+    min-height: 24px;
+    min-width: 24px;
+}
+
+/* Checkbox dan radio sedikit diperbesar tanpa merusak perataan form-check Bootstrap; label ikut menjadi area klik. */
+.form-check:not(.form-switch) {
+    padding-left: 1.75em;
+}
+
+.form-check:not(.form-switch) .form-check-input {
+    width: 1.25em;
+    height: 1.25em;
+    margin-left: -1.75em;
+    margin-top: 0.125em;
+}
+
+/* Kontras tautan navbar di atas latar cokelat tua (WCAG 2.2 SC 1.4.3). */
+.kk-navbar .nav-link,
+.kk-navbar .navbar-text {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.kk-navbar .nav-link:hover,
+.kk-navbar .nav-link.active {
+    color: #fff;
+}
+
+/* Judul, merek, dan harga memakai huruf judul (--kk-display, diatur di bagian TEMA). */
+h1, h2, h3, .h1, .h2, .h3, .h4, .h5, .navbar-brand, .kk-price {
+    font-family: var(--kk-display);
+    letter-spacing: -0.01em;
+}
+
+.kk-price {
+    font-weight: 650;
+    font-variant-numeric: tabular-nums;
+    color: var(--kk-aren);
+}
+
+/* Katalog */
+.kk-menu-head h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 750;
+    line-height: 1;
+}
+
+.kk-cat-nav {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: #fff;
+    border-bottom: 1px solid var(--kk-line);
+    overflow-x: auto;
+    scrollbar-width: thin;
+}
+
+.kk-cat-nav .nav {
+    flex-wrap: nowrap;
+}
+
+.kk-cat-nav .nav-link {
+    white-space: nowrap;
+    color: var(--bs-body-color);
+}
+
+.kk-cat-nav .nav-link.active {
+    background-color: var(--kk-brown);
+}
+
+.kk-section {
+    scroll-margin-top: 4rem;
+}
+
+.kk-section-title {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    font-size: clamp(1.5rem, 3.5vw, 2.125rem);
+    font-weight: 700;
+}
+
+.kk-section-title::after {
+    content: "";
+    flex: 1;
+    border-bottom: 2px solid var(--kk-line);
+    transform: translateY(-0.3em);
+}
+
+.kk-section-title small {
+    font-family: var(--bs-body-font-family);
+    font-size: 0.875rem;
+    font-weight: 400;
+    color: var(--bs-secondary-color);
+    letter-spacing: 0;
+}
+
+.kk-product {
+    border-color: var(--kk-line);
+    border-radius: 0.875rem;
+    overflow: hidden;
+}
+
+.kk-product .card-img-top {
+    aspect-ratio: 3 / 2;
+    height: auto;
+    object-fit: cover;
+    background: var(--kk-foam);
+    border-radius: 0;
+}
+
+.kk-product .card-title {
+    font-size: 1.0625rem;
+    font-weight: 650;
+}
+
+.kk-product .card-text {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.kk-product.is-habis .card-img-top {
+    filter: grayscale(1);
+    opacity: 0.6;
+}
+
+.kk-product.is-habis .kk-price {
+    color: var(--bs-secondary-color);
+}
+
+.kk-habis-badge {
+    position: absolute;
+    top: 0.5rem;
+    left: 0.5rem;
+}
+
+/* Modal kustomisasi: pilihan berupa tombol toggle (btn-check) agar mudah disentuh. */
+.kk-group {
+    border: 0;
+    padding: 0;
+    margin: 0 0 1.25rem;
+}
+
+.kk-group legend {
+    font-family: var(--kk-display);
+    font-size: 1.0625rem;
+    font-weight: 650;
+    margin-bottom: 0.125rem;
+}
+
+.kk-choice {
+    --bs-btn-color: var(--bs-body-color);
+    --bs-btn-border-color: var(--kk-line);
+    --bs-btn-hover-bg: var(--kk-foam);
+    --bs-btn-hover-border-color: var(--kk-brown);
+    --bs-btn-hover-color: var(--bs-body-color);
+    --bs-btn-active-bg: var(--kk-brown);
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-border-color: var(--kk-brown);
+    --bs-btn-disabled-color: var(--bs-secondary-color);
+    --bs-btn-disabled-border-color: var(--kk-line);
+    border-radius: 999px;
+    min-height: 2.5rem;
+}
+
+.btn-check:checked + .kk-choice .kk-delta {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.btn-check:disabled + .kk-choice {
+    text-decoration: line-through;
+}
+
+.kk-delta {
+    font-size: 0.8125rem;
+    color: var(--bs-secondary-color);
+}
+
+.kk-group.is-invalid .kk-choice {
+    --bs-btn-border-color: var(--bs-form-invalid-border-color);
+}
+
+.btn-check:focus-visible + .kk-choice {
+    outline: 3px solid var(--kk-brown);
+    outline-offset: 2px;
+}
+
+.kk-qty {
+    width: 4.5rem;
+    text-align: center;
+}
+
+/* Keranjang */
+.kk-cart-summary {
+    position: sticky;
+    top: 1rem;
+    border-color: var(--kk-line);
+}
+
+.kk-line-total {
+    min-width: 6rem;
+}
+
+/* Halaman pesanan: kode pesanan seperti tiket yang ditunjukkan ke kasir. */
+.kk-ticket {
+    padding: 1.5rem 1rem;
+    border: 2px dashed var(--kk-brown);
+    border-radius: 1rem;
+    background: var(--kk-foam);
+}
+
+.kk-code {
+    letter-spacing: 0.18em;
+    color: var(--kk-brown-dark);
+    overflow-wrap: anywhere;
+}
+
+.kk-steps {
+    counter-reset: step;
+}
+
+.kk-steps li {
+    counter-increment: step;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.375rem 0;
+    color: var(--bs-secondary-color);
+}
+
+.kk-steps li::before {
+    content: counter(step);
+    display: inline-grid;
+    place-items: center;
+    width: 1.75rem;
+    height: 1.75rem;
+    border-radius: 50%;
+    border: 2px solid var(--kk-line);
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+.kk-steps li.is-done {
+    color: var(--bs-body-color);
+}
+
+.kk-steps li.is-done::before {
+    content: "\2713";
+    border-color: var(--kk-brown);
+    background: var(--kk-brown);
+    color: #fff;
+}
+
+.kk-steps li.is-current {
+    color: var(--bs-body-color);
+    font-weight: 650;
+}
+
+.kk-steps li.is-current::before {
+    border-color: var(--kk-brown);
+    color: var(--kk-brown);
+}
+
+.kk-qris {
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+    background: #fff;
+}
+
+.kk-code-input {
+    letter-spacing: 0.2em;
+}
+
+.form-check-input:checked {
+    background-color: var(--kk-brown);
+    border-color: var(--kk-brown);
+}
+
+.form-check-input:focus,
+.form-control:focus {
+    border-color: #a3836f;
+    box-shadow: 0 0 0 0.25rem rgba(107, 78, 61, 0.2);
+}
+
+/* Antrean barista */
+.kk-col-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.kk-order-card {
+    border-color: var(--kk-line);
+    border-left: 4px solid var(--kk-brown);
+}
+
+.kk-order-card.is-new {
+    border-color: var(--bs-success);
+    box-shadow: 0 0 0 2px rgba(25, 135, 84, 0.25);
+}
+
+.kk-order-code {
+    font-family: var(--bs-font-monospace);
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--kk-brown-dark);
+}
+
+.kk-order-item + .kk-order-item {
+    margin-top: 0.5rem;
+}
+
+.kk-note {
+    background: #fff3cd;
+    padding: 0 0.25rem;
+    border-radius: 0.25rem;
+    display: inline-block;
+}
+
+/* Panel admin */
+.kk-form {
+    max-width: 44rem;
+}
+
+.kk-stat {
+    border-color: var(--kk-line);
+}
+
+.kk-inline-field .form-label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+}
+
+.kk-json {
+    max-width: 22rem;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+.form-switch .form-check-input {
+    width: 2.25em;
+    height: 1.25em;
+    margin-top: 0.125em;
+}
+
+.form-switch .form-check-input:focus:not(:checked) {
+    --bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23a3836f'/%3e%3c/svg%3e");
+}
+
+/* Ponsel: tombol keranjang di navbar dan target sentuh minimal 44 px untuk aksi utama. */
+.kk-cart-mobile {
+    --bs-btn-color: #fff;
+    --bs-btn-border-color: rgba(255, 255, 255, 0.35);
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-border-color: #fff;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+}
+
+.toast-container {
+    max-width: 100%;
+}
+
+@media (max-width: 767.98px) {
+    .btn-sm,
+    .kk-choice {
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .modal .btn-close {
+        padding: 0.875rem;
+    }
+
+    .navbar-toggler {
+        min-height: 44px;
+    }
+}
+
+/* Halaman pesanan: ponsel tiket, tindakan dan rincian, lalu langkah; laptop langkah tepat di bawah tiket. */
+.kk-order-layout {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-areas: "ticket" "main" "steps";
+}
+
+.kk-area-ticket { grid-area: ticket; }
+.kk-area-steps { grid-area: steps; }
+.kk-area-main { grid-area: main; }
+
+@media (min-width: 992px) {
+    .kk-order-layout {
+        grid-template-columns: 5fr 7fr;
+        grid-template-rows: auto 1fr;
+        grid-template-areas:
+            "ticket main"
+            "steps main";
+        align-items: start;
+        column-gap: 2rem;
+    }
+}
+
+.kk-ticket h1 {
+    line-height: 1.1;
+}
+
+/* =====================================================================
+   TEMA "KOPI & KITA": gaya MAJALAH EDITORIAL
+   Putih tulang + hitam pekat + satu aksen oranye. Judul raksasa, garis tipis.
+   Aktif di semua halaman lewat <body class="kk-theme"> (layouts/base.blade.php).
+
+   Daftar isi:
+   1. Warna, huruf, dan ukuran (ganti tema cukup di sini)
+   2. Dasar halaman
+   3. Navbar
+   4. Komponen umum (tombol, form, kartu, tabel, badge, alert, modal, dll.)
+   5. Halaman pelanggan (menu, keranjang, pesanan)
+   6. Halaman karyawan dan admin
+   7. Footer
+   8. Beranda
+   9. Login dan daftar
+   10. Animasi
+   ===================================================================== */
+
+/* ---------- 1. Warna, huruf, dan ukuran ---------- */
+.kk-theme {
+    --kk-ink: #141110;          /* hitam pekat: teks, garis, tombol */
+    --kk-ink-soft: #2c2724;
+    --kk-muted: #6b625b;        /* teks keterangan */
+    --kk-paper: #f3f0ea;        /* putih tulang: latar */
+    --kk-paper-2: #e8e3da;      /* blok abu hangat */
+    --kk-card: #fbfaf7;         /* putih kartu */
+    --kk-orange: #ff5a1f;       /* aksen utama (hanya untuk elemen besar/hiasan) */
+    --kk-orange-text: #c2410c;  /* oranye yang cukup gelap untuk teks kecil */
+    --kk-orange-soft: #fbd9c9;
+    --kk-line: rgba(20, 17, 16, 0.14);
+    --kk-rule: var(--kk-ink);   /* garis pembatas seksi */
+
+    --kk-display: "Anton", Impact, "Arial Narrow Bold", sans-serif;
+    --kk-serif: "Instrument Serif", Georgia, "Times New Roman", serif;
+    --kk-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+    --kk-sans: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+    /* Warna lama dipetakan ke tema baru, jadi aturan dasar di atas ikut menyesuaikan */
+    --kk-brown: var(--kk-ink);
+    --kk-brown-dark: var(--kk-ink);
+    --kk-aren: var(--kk-ink);
+    --kk-foam: var(--kk-paper-2);
+    --kk-cream: var(--kk-paper);
+
+    /* Variabel Bootstrap */
+    --bs-body-font-family: var(--kk-sans);
+    --bs-font-monospace: var(--kk-mono);
+    --bs-body-color: var(--kk-ink);
+    --bs-body-color-rgb: 20, 17, 16;
+    --bs-secondary-color: var(--kk-muted);
+    --bs-border-color: var(--kk-line);
+    --bs-primary: #141110;
+    --bs-primary-rgb: 20, 17, 16;
+    --bs-link-color: var(--kk-ink);
+    --bs-link-color-rgb: 20, 17, 16;
+    --bs-link-hover-color: var(--kk-orange-text);
+    --bs-link-hover-color-rgb: 194, 65, 12;
+    --bs-border-radius: 0.25rem;
+    --bs-border-radius-sm: 0.2rem;
+    --bs-border-radius-lg: 0.375rem;
+    --bs-focus-ring-color: rgba(255, 90, 31, 0.35);
+}
+
+/* ---------- 2. Dasar halaman ---------- */
+/* Latar putih tulang dengan tekstur kertas halus */
+body.kk-theme {
+    background-color: var(--kk-paper);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .08 0 0 0 0 .07 0 0 0 0 .06 0 0 0 .06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    color: var(--kk-ink);
+    font-family: var(--kk-sans);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: clip;
+}
+
+html:has(> body.kk-theme) {
+    overflow-x: clip;
+}
+
+.kk-theme ::selection {
+    background: var(--kk-orange);
+    color: #fff;
+}
+
+.kk-theme :focus-visible {
+    outline: 2px solid var(--kk-orange);
+    outline-offset: 3px;
+}
+
+/* Judul: huruf kapital tebal ala sampul majalah */
+.kk-theme h1, .kk-theme h2, .kk-theme .h1, .kk-theme .h2 {
+    font-family: var(--kk-display);
+    font-weight: 400;
+    letter-spacing: 0.005em;
+    line-height: 0.95;
+    text-transform: uppercase;
+}
+
+.kk-theme h3, .kk-theme .h3, .kk-theme .h4, .kk-theme .h5, .kk-theme h4, .kk-theme h5 {
+    font-family: var(--kk-sans);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+}
+
+.kk-theme main h1:not(.kk-hero-title):not(.kk-auth-title) {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+}
+
+/* Aksen miring serif: dipakai untuk kata-kata "gaul" yang ditonjolkan */
+.kk-italic {
+    font-family: var(--kk-serif);
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    text-transform: none;
+}
+
+/* Label kecil gaya mesin ketik */
+.kk-mono {
+    font-family: var(--kk-mono);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+/* ---------- 3. Navbar: bar penuh dengan garis tipis bawah ---------- */
+.kk-theme .kk-navbar {
+    --bs-navbar-color: var(--kk-ink);
+    --bs-navbar-hover-color: var(--kk-orange-text);
+    --bs-navbar-active-color: var(--kk-ink);
+    --bs-navbar-brand-color: var(--kk-ink);
+    --bs-navbar-brand-hover-color: var(--kk-ink);
+    --bs-navbar-toggler-border-color: var(--kk-ink);
+    --bs-navbar-toggler-icon-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23141110' stroke-width='2' d='M5 9h20M5 15h20M5 21h20'/%3e%3c/svg%3e");
+    position: sticky;
+    top: 0;
+    z-index: 1030;
+    padding: 0.625rem 0;
+    border-bottom: 1px solid var(--kk-rule);
+    background: rgba(243, 240, 234, 0.9);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: none;
+}
+
+/* Logo: KOPI & KITA huruf raksasa + nomor edisi */
+.kk-theme .kk-navbar .navbar-brand {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.625rem;
+    font-family: var(--kk-display);
+    font-size: 1.5rem;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    line-height: 1;
+    text-transform: uppercase;
+}
+
+.kk-theme .kk-navbar .navbar-brand::after {
+    content: "No. 01";
+    font-family: var(--kk-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.08em;
+    color: var(--kk-orange-text);
+}
+
+/* Label "Admin" / "Karyawan" */
+.kk-theme .kk-navbar .navbar-brand .badge {
+    order: 2;
+    padding: 0.3em 0.55em;
+    border: 1px solid var(--kk-ink);
+    border-radius: 0;
+    background: transparent !important;
+    color: var(--kk-ink) !important;
+    font-family: var(--kk-mono);
+    font-size: 0.625rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.kk-theme .kk-navbar .navbar-brand .badge ~ * { order: 3; }
+
+.kk-theme .kk-navbar .navbar-toggler {
+    padding: 0.35rem 0.5rem;
+    border-radius: 0;
+}
+
+.kk-theme .kk-navbar .navbar-toggler:focus {
+    box-shadow: 0 0 0 0.2rem var(--bs-focus-ring-color);
+}
+
+.kk-theme .kk-navbar .navbar-nav {
+    gap: 0.25rem;
+}
+
+.kk-theme .kk-navbar .nav-link,
+.kk-theme .kk-navbar .navbar-text {
+    position: relative;
+    padding: 0.5rem 0.75rem;
+    border: 0;
+    border-radius: 0;
+    color: var(--kk-ink);
+    font-size: 0.8125rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.kk-theme .kk-navbar .navbar-text {
+    color: var(--kk-muted);
+}
+
+/* Garis oranye di bawah link yang aktif / disorot */
+.kk-theme .kk-navbar .nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0.75rem;
+    right: 0.75rem;
+    bottom: 0.25rem;
+    height: 2px;
+    background: var(--kk-orange);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.25s ease;
+}
+
+.kk-theme .kk-navbar .nav-link:hover::after,
+.kk-theme .kk-navbar .nav-link.active::after {
+    transform: scaleX(1);
+}
+
+.kk-theme .kk-navbar .nav-link:hover {
+    color: var(--kk-ink);
+}
+
+/* Link "Daftar" jadi tombol hitam kotak */
+.kk-theme .kk-navbar .nav-link[href$="/register"] {
+    margin-left: 0.5rem;
+    padding-inline: 1rem;
+    background: var(--kk-ink);
+    color: var(--kk-paper);
+}
+
+.kk-theme .kk-navbar .nav-link[href$="/register"]::after {
+    display: none;
+}
+
+.kk-theme .kk-navbar .nav-link[href$="/register"]:hover {
+    background: var(--kk-orange);
+    color: var(--kk-ink);
+}
+
+.kk-theme .kk-navbar .js-cart-count {
+    border: 0;
+    border-radius: 0;
+    background: var(--kk-orange) !important;
+    color: var(--kk-ink) !important;
+    font-family: var(--kk-mono);
+}
+
+.kk-theme .kk-cart-mobile {
+    --bs-btn-color: var(--kk-ink);
+    --bs-btn-border-color: var(--kk-ink);
+    --bs-btn-hover-color: var(--kk-paper);
+    --bs-btn-hover-bg: var(--kk-ink);
+    --bs-btn-hover-border-color: var(--kk-ink);
+    border-radius: 0;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.kk-theme .kk-navbar .dropdown-menu {
+    margin-top: 0.5rem;
+}
+
+@media (max-width: 767.98px) {
+    .kk-theme .navbar-expand-md .navbar-nav { padding: 0.75rem 0 0.25rem; }
+}
+
+@media (max-width: 991.98px) {
+    .kk-theme .navbar-expand-lg .navbar-nav { padding-top: 0.5rem; }
+}
+
+@media (max-width: 1399.98px) {
+    .kk-theme .navbar-expand-xxl .navbar-nav { padding-top: 0.5rem; }
+}
+
+/* Navbar karyawan/admin: link lebih rapat */
+.kk-theme .kk-navbar > .container-fluid {
+    padding-inline: clamp(1rem, 2.5vw, 2rem);
+}
+
+.kk-theme .kk-navbar > .container-fluid .nav-link,
+.kk-theme .kk-navbar > .container-fluid .navbar-text {
+    padding-inline: 0.6rem;
+    font-size: 0.75rem;
+}
+
+@media (max-width: 575.98px) {
+    .kk-theme .kk-navbar .navbar-brand { font-size: 1.25rem; gap: 0.5rem; }
+    .kk-theme .kk-navbar .navbar-brand::after { display: none; }
+    .kk-theme .kk-navbar .kk-cart-mobile { margin-right: 0.375rem !important; padding: 0.25rem 0.625rem; }
+}
+
+/* ---------- 4. Komponen umum ---------- */
+
+/* Tombol: kotak tegas, huruf kapital */
+.kk-theme .btn {
+    --bs-btn-font-weight: 700;
+    --bs-btn-font-size: 0.8125rem;
+    --bs-btn-padding-x: 1.25rem;
+    --bs-btn-padding-y: 0.65rem;
+    --bs-btn-focus-box-shadow: 0 0 0 0.25rem var(--bs-focus-ring-color);
+    border-radius: 0;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.kk-theme .btn-lg {
+    --bs-btn-padding-x: 1.75rem;
+    --bs-btn-padding-y: 0.95rem;
+    --bs-btn-font-size: 0.875rem;
+}
+
+.kk-theme .btn-sm {
+    --bs-btn-padding-x: 0.75rem;
+    --bs-btn-padding-y: 0.35rem;
+    --bs-btn-font-size: 0.6875rem;
+}
+
+.kk-theme .btn-primary,
+.kk-theme .btn-dark {
+    --bs-btn-color: var(--kk-paper);
+    --bs-btn-bg: var(--kk-ink);
+    --bs-btn-border-color: var(--kk-ink);
+    --bs-btn-hover-color: var(--kk-ink);
+    --bs-btn-hover-bg: var(--kk-orange);
+    --bs-btn-hover-border-color: var(--kk-orange);
+    --bs-btn-active-color: var(--kk-ink);
+    --bs-btn-active-bg: var(--kk-orange);
+    --bs-btn-active-border-color: var(--kk-orange);
+    --bs-btn-disabled-color: var(--kk-paper);
+    --bs-btn-disabled-bg: #8a837d;
+    --bs-btn-disabled-border-color: #8a837d;
+}
+
+.kk-theme .btn-outline-primary,
+.kk-theme .btn-outline-secondary,
+.kk-theme .btn-outline-dark,
+.kk-theme .btn-light,
+.kk-theme .btn-secondary {
+    --bs-btn-color: var(--kk-ink);
+    --bs-btn-bg: transparent;
+    --bs-btn-border-color: var(--kk-ink);
+    --bs-btn-hover-color: var(--kk-paper);
+    --bs-btn-hover-bg: var(--kk-ink);
+    --bs-btn-hover-border-color: var(--kk-ink);
+    --bs-btn-active-color: var(--kk-paper);
+    --bs-btn-active-bg: var(--kk-ink);
+    --bs-btn-active-border-color: var(--kk-ink);
+    --bs-btn-disabled-color: var(--kk-muted);
+    --bs-btn-disabled-bg: transparent;
+    --bs-btn-disabled-border-color: var(--kk-line);
+}
+
+.kk-theme .btn-danger {
+    --bs-btn-bg: #b42318;
+    --bs-btn-border-color: #b42318;
+    --bs-btn-hover-bg: #8f1c13;
+    --bs-btn-hover-border-color: #8f1c13;
+    --bs-btn-active-bg: #8f1c13;
+    --bs-btn-active-border-color: #8f1c13;
+}
+
+.kk-theme .btn-outline-danger {
+    --bs-btn-color: #b42318;
+    --bs-btn-bg: transparent;
+    --bs-btn-border-color: rgba(180, 35, 24, 0.5);
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #b42318;
+    --bs-btn-hover-border-color: #b42318;
+}
+
+.kk-theme .btn-success {
+    --bs-btn-bg: #1f6b3a;
+    --bs-btn-border-color: #1f6b3a;
+    --bs-btn-hover-bg: #17532d;
+    --bs-btn-hover-border-color: #17532d;
+}
+
+.kk-theme .btn-link {
+    --bs-btn-color: var(--kk-ink);
+    --bs-btn-hover-color: var(--kk-orange-text);
+    text-underline-offset: 0.25em;
+}
+
+/* Kolom isian: kotak dengan garis hitam tipis */
+.kk-theme .form-control,
+.kk-theme .form-select {
+    min-height: 2.875rem;
+    padding: 0.625rem 0.875rem;
+    border: 1px solid var(--kk-ink);
+    border-radius: 0;
+    background-color: var(--kk-card);
+    color: var(--kk-ink);
+}
+
+.kk-theme .form-select {
+    padding-right: 2.5rem;
+}
+
+.kk-theme textarea.form-control {
+    min-height: 6rem;
+}
+
+.kk-theme .form-control-sm,
+.kk-theme .form-select-sm {
+    min-height: 2.25rem;
+    padding-block: 0.3rem;
+}
+
+.kk-theme .form-control::placeholder {
+    color: rgba(20, 17, 16, 0.38);
+}
+
+.kk-theme .form-control:focus,
+.kk-theme .form-select:focus {
+    border-color: var(--kk-ink);
+    box-shadow: 0 0 0 3px var(--kk-orange);
+}
+
+.kk-theme .form-control.is-invalid,
+.kk-theme .form-select.is-invalid {
+    border-color: #b42318;
+}
+
+.kk-theme .form-label,
+.kk-theme legend {
+    font-family: var(--kk-mono);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--kk-ink);
+}
+
+.kk-theme .form-text {
+    color: var(--kk-muted);
+    font-size: 0.8125rem;
+}
+
+.kk-theme .invalid-feedback {
+    color: #b42318;
+    font-weight: 500;
+}
+
+.kk-theme .form-check-input {
+    border: 1px solid var(--kk-ink);
+    border-radius: 0;
+}
+
+.kk-theme .form-check-input[type="radio"],
+.kk-theme .form-switch .form-check-input {
+    border-radius: 999px;
+}
+
+.kk-theme .form-check-input:checked {
+    border-color: var(--kk-ink);
+    background-color: var(--kk-ink);
+}
+
+.kk-theme .form-check-input:focus {
+    border-color: var(--kk-ink);
+    box-shadow: 0 0 0 0.2rem var(--bs-focus-ring-color);
+}
+
+.kk-theme .input-group > .btn {
+    border-radius: 0;
+}
+
+.kk-theme .input-group-text {
+    border: 1px solid var(--kk-ink);
+    border-radius: 0;
+    background: var(--kk-paper-2);
+    font-family: var(--kk-mono);
+    font-size: 0.8125rem;
+}
+
+/* Kartu: kotak tipis tanpa bayangan */
+.kk-theme .card {
+    --bs-card-bg: var(--kk-card);
+    --bs-card-border-color: var(--kk-ink);
+    --bs-card-border-radius: 0;
+    --bs-card-inner-border-radius: 0;
+    --bs-card-cap-bg: var(--kk-paper-2);
+    box-shadow: none;
+}
+
+.kk-theme .card.shadow-sm {
+    box-shadow: none !important;
+}
+
+.kk-theme .card-header {
+    border-bottom: 1px solid var(--kk-ink);
+    font-family: var(--kk-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.kk-theme a.card {
+    color: var(--kk-ink);
+    transition: background-color 0.2s ease;
+}
+
+.kk-theme a.card:hover {
+    background: var(--kk-orange-soft);
+}
+
+/* Tabel: garis tipis, kepala tabel gaya mesin ketik */
+.kk-theme .table-responsive {
+    margin-bottom: 1.5rem;
+    border-top: 1px solid var(--kk-ink);
+    border-bottom: 1px solid var(--kk-ink);
+}
+
+.kk-theme .table {
+    --bs-table-bg: transparent;
+    --bs-table-color: var(--kk-ink);
+    --bs-table-striped-bg: rgba(20, 17, 16, 0.03);
+    --bs-table-hover-bg: rgba(255, 90, 31, 0.08);
+    --bs-table-border-color: var(--kk-line);
+    margin-bottom: 0;
+    vertical-align: middle;
+}
+
+.kk-theme .table > thead > tr > th {
+    border-bottom: 1px solid var(--kk-ink);
+    background: transparent;
+    font-family: var(--kk-mono);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.kk-theme .table > :not(caption) > * > * {
+    padding: 0.875rem 0.75rem;
+}
+
+.kk-theme .table > tbody > tr:last-child > * {
+    border-bottom: 0;
+}
+
+/* Badge: label kotak kecil gaya mesin ketik */
+.kk-theme .badge {
+    padding: 0.4em 0.6em;
+    border-radius: 0;
+    font-family: var(--kk-mono);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.kk-theme .text-bg-warning { background-color: #ffe7a8 !important; color: #5c3d00 !important; }
+.kk-theme .text-bg-success { background-color: #cfe9d6 !important; color: #14532d !important; }
+.kk-theme .text-bg-primary { background-color: var(--kk-orange) !important; color: var(--kk-ink) !important; }
+.kk-theme .text-bg-info { background-color: #cfe4f2 !important; color: #0c4a6e !important; }
+.kk-theme .text-bg-secondary { background-color: var(--kk-paper-2) !important; color: var(--kk-ink) !important; }
+.kk-theme .text-bg-danger { background-color: #f9d0cb !important; color: #8f1c13 !important; }
+.kk-theme .text-bg-dark { background-color: var(--kk-ink) !important; color: var(--kk-paper) !important; }
+.kk-theme .text-bg-light { background-color: var(--kk-card) !important; color: var(--kk-ink) !important; }
+
+/* Pemberitahuan: garis tebal di kiri */
+.kk-theme .alert {
+    border: 1px solid var(--kk-ink);
+    border-left-width: 4px;
+    border-radius: 0;
+    background: var(--kk-card);
+    color: var(--kk-ink);
+    font-weight: 500;
+}
+
+.kk-theme .alert-success { border-left-color: #1f6b3a; }
+.kk-theme .alert-warning { border-left-color: var(--kk-orange); }
+.kk-theme .alert-danger { border-left-color: #b42318; }
+.kk-theme .alert-info { border-left-color: #0c4a6e; }
+
+.kk-theme .alert-heading {
+    font-family: var(--kk-display);
+    text-transform: uppercase;
+}
+
+/* Jendela pop-up */
+.kk-theme .modal-content {
+    border: 1px solid var(--kk-ink);
+    border-radius: 0;
+    background: var(--kk-card);
+    box-shadow: 12px 12px 0 var(--kk-ink);
+}
+
+.kk-theme .modal-header {
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid var(--kk-ink);
+}
+
+.kk-theme .modal-body {
+    padding: 1.25rem 1.5rem;
+}
+
+.kk-theme .modal-footer {
+    padding: 1rem 1.5rem;
+    border-top: 1px solid var(--kk-ink);
+    background: var(--kk-paper);
+}
+
+.kk-theme .modal-title {
+    font-family: var(--kk-display);
+    font-size: 1.75rem;
+    font-weight: 400;
+    line-height: 1;
+    text-transform: uppercase;
+}
+
+.modal-backdrop.show {
+    opacity: 0.55;
+}
+
+/* Daftar (list-group) */
+.kk-theme .list-group {
+    --bs-list-group-bg: var(--kk-card);
+    --bs-list-group-border-color: var(--kk-line);
+    --bs-list-group-border-radius: 0;
+    --bs-list-group-active-bg: var(--kk-ink);
+    --bs-list-group-active-border-color: var(--kk-ink);
+    border-top: 1px solid var(--kk-ink);
+    border-bottom: 1px solid var(--kk-ink);
+}
+
+/* Dropdown */
+.kk-theme .dropdown-menu {
+    --bs-dropdown-bg: var(--kk-card);
+    --bs-dropdown-border-color: var(--kk-ink);
+    --bs-dropdown-border-radius: 0;
+    --bs-dropdown-link-hover-bg: var(--kk-orange-soft);
+    --bs-dropdown-link-active-bg: var(--kk-ink);
+    padding: 0.25rem;
+    box-shadow: 6px 6px 0 var(--kk-ink);
+}
+
+.kk-theme .dropdown-item {
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+/* Pil navigasi (kategori menu): teks kapital dengan garis bawah */
+.kk-theme .nav-pills {
+    --bs-nav-pills-border-radius: 0;
+    --bs-nav-pills-link-active-bg: var(--kk-ink);
+    --bs-nav-pills-link-active-color: var(--kk-paper);
+}
+
+.kk-theme .nav-pills .nav-link {
+    padding: 0.5rem 0.875rem;
+    border: 1px solid var(--kk-ink);
+    background: transparent;
+    color: var(--kk-ink);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.kk-theme .nav-pills .nav-link:hover {
+    background: var(--kk-orange-soft);
+}
+
+.kk-theme .nav-pills .nav-link.active,
+.kk-theme .kk-cat-nav .nav-link.active {
+    border-color: var(--kk-ink);
+    background-color: var(--kk-ink);
+    color: var(--kk-paper);
+}
+
+.kk-theme .nav-tabs {
+    --bs-nav-tabs-border-color: var(--kk-ink);
+    --bs-nav-tabs-border-radius: 0;
+    --bs-nav-tabs-link-active-bg: var(--kk-card);
+    --bs-nav-tabs-link-active-border-color: var(--kk-ink) var(--kk-ink) var(--kk-card);
+}
+
+.kk-theme .nav-tabs .nav-link {
+    color: var(--kk-ink);
+    font-weight: 700;
+}
+
+/* Halaman (pagination) */
+.kk-theme .pagination {
+    --bs-pagination-color: var(--kk-ink);
+    --bs-pagination-bg: transparent;
+    --bs-pagination-border-color: var(--kk-ink);
+    --bs-pagination-border-radius: 0;
+    --bs-pagination-hover-color: var(--kk-ink);
+    --bs-pagination-hover-bg: var(--kk-orange-soft);
+    --bs-pagination-hover-border-color: var(--kk-ink);
+    --bs-pagination-active-bg: var(--kk-ink);
+    --bs-pagination-active-border-color: var(--kk-ink);
+    --bs-pagination-focus-box-shadow: 0 0 0 0.2rem var(--bs-focus-ring-color);
+    font-family: var(--kk-mono);
+}
+
+/* Notifikasi kecil (toast) */
+.kk-theme .toast {
+    border: 1px solid var(--kk-ink) !important;
+    border-radius: 0;
+    box-shadow: 6px 6px 0 var(--kk-ink);
+}
+
+.kk-theme .toast .btn-close-white {
+    filter: none;
+}
+
+.kk-theme .text-body-secondary,
+.kk-theme .text-muted {
+    color: var(--kk-muted) !important;
+}
+
+/* ---------- 5. Halaman pelanggan ---------- */
+
+/* Menu: bar kategori menempel di bawah navbar */
+.kk-theme .kk-cat-nav {
+    top: 4.0625rem;
+    padding: 0.625rem 0 !important;
+    border-top: 1px solid var(--kk-ink);
+    border-bottom: 1px solid var(--kk-ink);
+    background: rgba(243, 240, 234, 0.92);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.kk-theme .kk-section {
+    scroll-margin-top: 8rem;
+}
+
+/* Judul kategori: huruf raksasa + garis */
+.kk-theme .kk-section-title {
+    font-family: var(--kk-display);
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+.kk-theme .kk-section-title::after {
+    border-bottom: 1px solid var(--kk-ink);
+}
+
+.kk-theme .kk-section-title small {
+    font-family: var(--kk-mono);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+/* Kartu produk */
+.kk-theme .kk-product {
+    border-color: var(--kk-ink);
+    border-radius: 0;
+    transition: background-color 0.2s ease;
+}
+
+.kk-theme .kk-product:hover {
+    background: #fff;
+}
+
+.kk-theme .kk-product > .position-relative {
+    overflow: hidden;
+    border-bottom: 1px solid var(--kk-ink);
+    background: var(--kk-paper-2);
+}
+
+.kk-theme .row > .col:nth-child(3n + 2) .kk-product > .position-relative { background: var(--kk-orange-soft); }
+.kk-theme .row > .col:nth-child(3n) .kk-product > .position-relative { background: #dedbd2; }
+
+.kk-theme .kk-product .card-img-top {
+    border-radius: 0;
+    background: transparent;
+    mix-blend-mode: multiply;
+    transition: transform 0.5s ease;
+}
+
+.kk-theme .kk-product:hover .card-img-top {
+    transform: scale(1.05);
+}
+
+.kk-theme .kk-product .card-title {
+    font-family: var(--kk-display);
+    font-size: 1.375rem;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+}
+
+.kk-theme .kk-price {
+    color: var(--kk-ink);
+    font-family: var(--kk-mono);
+    font-weight: 600;
+}
+
+.kk-theme .kk-habis-badge {
+    top: 0.75rem;
+    left: 0.75rem;
+}
+
+/* Pilihan ukuran/es/gula di pop-up */
+.kk-theme .kk-group legend {
+    margin-bottom: 0.5rem;
+}
+
+.kk-theme .kk-choice {
+    --bs-btn-color: var(--kk-ink);
+    --bs-btn-bg: transparent;
+    --bs-btn-border-color: var(--kk-ink);
+    --bs-btn-hover-bg: var(--kk-orange-soft);
+    --bs-btn-hover-color: var(--kk-ink);
+    --bs-btn-hover-border-color: var(--kk-ink);
+    --bs-btn-active-bg: var(--kk-ink);
+    --bs-btn-active-color: var(--kk-paper);
+    --bs-btn-active-border-color: var(--kk-ink);
+    border-radius: 0;
+    letter-spacing: 0.04em;
+    text-transform: none;
+    font-size: 0.875rem;
+}
+
+.kk-theme .btn-check:checked + .kk-choice {
+    border-color: var(--kk-ink);
+    background: var(--kk-ink);
+    color: var(--kk-paper);
+}
+
+.kk-theme .btn-check:checked + .kk-choice .kk-delta {
+    color: var(--kk-orange);
+}
+
+/* Keranjang dan checkout */
+.kk-theme .kk-cart-summary {
+    top: 5.5rem;
+}
+
+/* Tiket kode pesanan */
+.kk-theme .kk-ticket {
+    padding: 2rem 1.25rem;
+    border: 1px solid var(--kk-ink);
+    border-radius: 0;
+    background: var(--kk-card);
+    box-shadow: 10px 10px 0 var(--kk-orange);
+}
+
+.kk-theme .kk-code {
+    color: var(--kk-ink);
+    font-family: var(--kk-mono);
+    font-weight: 600;
+}
+
+/* Langkah status pesanan */
+.kk-theme .kk-steps li {
+    font-size: 0.9375rem;
+}
+
+.kk-theme .kk-steps li::before {
+    border: 1px solid var(--kk-ink);
+    border-radius: 0;
+    background: transparent;
+    color: var(--kk-ink);
+    font-family: var(--kk-mono);
+}
+
+.kk-theme .kk-steps li.is-done::before {
+    border-color: var(--kk-ink);
+    background: var(--kk-ink);
+    color: var(--kk-paper);
+}
+
+.kk-theme .kk-steps li.is-current::before {
+    border-color: var(--kk-ink);
+    background: var(--kk-orange);
+    color: var(--kk-ink);
+}
+
+.kk-theme .kk-qris {
+    padding: 0.75rem;
+    border: 1px solid var(--kk-ink);
+}
+
+/* ---------- 6. Karyawan dan admin ---------- */
+.kk-theme main.container-fluid {
+    padding-inline: clamp(1rem, 2.5vw, 2rem);
+}
+
+/* Kartu antrean barista */
+.kk-theme .kk-order-card {
+    border: 1px solid var(--kk-ink);
+    border-left: 6px solid var(--kk-orange);
+}
+
+.kk-theme .kk-order-card.is-new {
+    border-left-color: #1f6b3a;
+    background: #f1f8f2;
+}
+
+.kk-theme .kk-order-code {
+    color: var(--kk-ink);
+    font-family: var(--kk-mono);
+}
+
+.kk-theme .kk-note {
+    background: #ffe7a8;
+    border-radius: 0;
+}
+
+.kk-theme .kk-col-title {
+    font-family: var(--kk-display);
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+/* Kotak statistik dashboard */
+.kk-theme .kk-stat {
+    border-color: var(--kk-ink);
+}
+
+.kk-theme .row > :nth-child(4n + 2) > .kk-stat { background: var(--kk-orange-soft); }
+.kk-theme .row > :nth-child(4n + 3) > .kk-stat { background: var(--kk-paper-2); }
+
+.kk-theme .kk-stat.border-danger {
+    border-color: #b42318 !important;
+    background: #fdecea !important;
+}
+
+/* Form admin dibungkus kotak */
+.kk-theme form.kk-form {
+    padding: clamp(1.25rem, 3vw, 2rem);
+    border: 1px solid var(--kk-ink);
+    background: var(--kk-card);
+}
+
+/* Isian kode di kasir dan pengambilan */
+.kk-theme .kk-code-input {
+    min-height: 3.5rem;
+    font-family: var(--kk-mono);
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+/* ---------- 7. Footer (halaman pelanggan) ---------- */
+.kk-theme footer {
+    --bs-body-color-rgb: 243, 240, 234;
+    --bs-secondary-color: rgba(243, 240, 234, 0.6);
+    position: relative;
+    margin-top: 6rem;
+    padding-top: 2.5rem !important;
+    padding-bottom: 0 !important;
+    border-top: 0 !important;
+    background: var(--kk-ink);
+    color: var(--kk-paper);
+    font-family: var(--kk-mono);
+    font-size: 0.75rem !important;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    overflow: hidden;
+}
+
+.kk-theme footer .text-body-secondary {
+    color: rgba(243, 240, 234, 0.6) !important;
+}
+
+.kk-theme footer .text-body {
+    color: var(--kk-orange) !important;
+}
+
+.kk-theme footer .container {
+    position: relative;
+    z-index: 1;
+    line-height: 1.9;
+}
+
+/* Nama kedai raksasa selebar layar */
+.kk-theme footer::after {
+    content: "KOPI & KITA";
+    display: block;
+    margin-top: 2rem;
+    font-family: var(--kk-display);
+    font-size: clamp(4rem, 19vw, 18rem);
+    letter-spacing: -0.01em;
+    line-height: 0.82;
+    text-align: center;
+    white-space: nowrap;
+    color: var(--kk-paper);
+    transform: translateY(0.08em);
+}
+
+/* ---------- 8. Beranda ---------- */
+
+/* Baris info di atas judul (gaya kepala majalah) */
+.kk-hero {
+    padding-top: clamp(1rem, 3vw, 2rem);
+}
+
+.kk-hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem 1.5rem;
+    padding-bottom: 0.875rem;
+    border-bottom: 1px solid var(--kk-ink);
+}
+
+.kk-open-state {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0;
+    font-family: var(--kk-mono);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.kk-open-state::before {
+    content: "";
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+}
+
+.kk-open-state.is-open { color: #14532d; }
+.kk-open-state.is-open::before { background: #22a052; }
+.kk-open-state.is-closed { color: #8f1c13; }
+.kk-open-state.is-closed::before { background: #e5432d; }
+
+/* Area judul raksasa + gambar */
+/* Catatan: jangan beri isolation/z-index di sini, agar efek "difference" pada judul bercampur dengan latar halaman. */
+.kk-hero-stage {
+    position: relative;
+    padding-block: clamp(1.5rem, 4vw, 2.5rem) 0;
+}
+
+.kk-hero-title {
+    position: relative;
+    z-index: 2;
+    margin: 0;
+    font-family: var(--kk-display);
+    font-size: clamp(4.75rem, 17vw, 15rem);
+    font-weight: 400;
+    line-height: 0.84;
+    letter-spacing: -0.005em;
+    text-transform: uppercase;
+    /* Teks putih + "difference": tampil hitam di atas latar terang, putih di atas gambar gelap */
+    color: #fff;
+    mix-blend-mode: difference;
+}
+
+.kk-hero-title span {
+    display: block;
+}
+
+.kk-hero-title .kk-indent {
+    padding-left: 0.9em;
+}
+
+/* Gambar sampul: kotak hitam berisi matahari oranye dan gelas es kopi */
+.kk-cover {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    place-items: end center;
+    width: min(100%, 24rem);
+    aspect-ratio: 3 / 4;
+    margin: 1.5rem 0 0 auto;
+    padding-bottom: 10%;
+    background: var(--kk-ink);
+    overflow: hidden;
+}
+
+@media (min-width: 768px) {
+    .kk-cover {
+        position: absolute;
+        top: clamp(1.5rem, 4vw, 2.5rem);
+        right: 0;
+        width: 38%;
+        max-width: 26rem;
+        margin: 0;
+    }
+}
+
+/* Matahari oranye di belakang gelas */
+.kk-cover::before {
+    content: "";
+    position: absolute;
+    top: 14%;
+    left: 50%;
+    width: 78%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: var(--kk-orange);
+    transform: translateX(-50%);
+}
+
+/* Garis-garis horizontal di matahari, khas poster retro */
+.kk-cover::after {
+    content: "";
+    position: absolute;
+    top: 14%;
+    left: 50%;
+    width: 78%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: repeating-linear-gradient(180deg, transparent 0 62%, var(--kk-ink) 62% 64%, transparent 64% 70%, var(--kk-ink) 70% 73%, transparent 73% 80%, var(--kk-ink) 80% 84%, transparent 84% 100%);
+    transform: translateX(-50%);
+}
+
+.kk-cover-caption {
+    position: absolute;
+    left: 0.875rem;
+    right: 0.875rem;
+    bottom: 0.75rem;
+    z-index: 3;
+    display: flex;
+    justify-content: space-between;
+    color: var(--kk-paper);
+    font-family: var(--kk-mono);
+    font-size: 0.625rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+/* Label kode pesanan menempel di gambar */
+.kk-cover-tag {
+    position: absolute;
+    top: 0.875rem;
+    left: 0.875rem;
+    z-index: 3;
+    padding: 0.5rem 0.625rem;
+    background: var(--kk-paper);
+    color: var(--kk-ink);
+    font-family: var(--kk-mono);
+    font-size: 0.6875rem;
+    line-height: 1.4;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.kk-cover-tag strong {
+    display: block;
+    font-size: 1rem;
+    letter-spacing: 0.14em;
+}
+
+.kk-cover-tag .kk-live {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    color: #14532d;
+}
+
+.kk-cover-tag .kk-live::before {
+    content: "";
+    width: 0.4rem;
+    height: 0.4rem;
+    border-radius: 50%;
+    background: #22a052;
+}
+
+/* Lencana bundar oranye berputar */
+.kk-badge-spin {
+    position: absolute;
+    right: 0.75rem;
+    bottom: 2.75rem;
+    z-index: 4;
+    display: grid;
+    place-items: center;
+    width: 7rem;
+    height: 7rem;
+    border-radius: 50%;
+    background: var(--kk-paper);
+    color: var(--kk-ink);
+    border: 1px solid var(--kk-ink);
+}
+
+.kk-badge-spin svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.kk-badge-spin text {
+    fill: currentColor;
+    font-family: var(--kk-mono);
+    font-size: 9.5px;
+    font-weight: 600;
+    letter-spacing: 1.6px;
+}
+
+.kk-badge-spin-center {
+    font-family: var(--kk-serif);
+    font-size: 1.75rem;
+    font-style: italic;
+    color: var(--kk-orange-text);
+}
+
+@media (max-width: 767.98px) {
+    .kk-badge-spin { width: 6rem; height: 6rem; }
+}
+
+/* Gelas es kopi susu (dipakai di beranda, login, daftar) */
+.kk-glass {
+    position: relative;
+    z-index: 2;
+    width: 9rem;
+    height: 13.5rem;
+}
+
+.kk-glass-straw {
+    position: absolute;
+    top: -2.75rem;
+    left: 56%;
+    width: 0.65rem;
+    height: 8rem;
+    background: var(--kk-paper);
+    transform: rotate(9deg);
+    transform-origin: bottom;
+}
+
+.kk-glass-cup {
+    position: absolute;
+    inset: 0;
+    clip-path: polygon(0 0, 100% 0, 89% 100%, 11% 100%);
+    background:
+        linear-gradient(180deg,
+            rgba(255, 255, 255, 0.35) 0%,
+            rgba(255, 255, 255, 0.35) 11%,
+            #f6ecdd 11%,
+            #ecd8bd 38%,
+            #c08a5c 52%,
+            #8a5230 72%,
+            #5b321b 100%);
+}
+
+.kk-glass-cup::before {
+    content: "";
+    position: absolute;
+    top: 6%;
+    bottom: 8%;
+    left: 11%;
+    width: 9%;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.05));
+}
+
+.kk-glass-cup::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 0.375rem;
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.kk-ice {
+    position: absolute;
+    width: 2.3rem;
+    height: 2.3rem;
+    border: 1px solid rgba(255, 255, 255, 0.85);
+    border-radius: 0.375rem;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.15));
+}
+
+.kk-ice-1 { top: 15%; left: 22%; transform: rotate(14deg); }
+.kk-ice-2 { top: 21%; left: 50%; transform: rotate(-10deg); }
+.kk-ice-3 { top: 36%; left: 34%; transform: rotate(26deg); opacity: 0.85; }
+
+/* Baris bawah hero: "literally." + teks + tombol */
+.kk-hero-foot {
+    display: grid;
+    gap: 1.5rem 3rem;
+    align-items: end;
+    margin-top: clamp(1.5rem, 3vw, 2.5rem);
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--kk-ink);
+}
+
+@media (min-width: 768px) {
+    .kk-hero-foot {
+        grid-template-columns: auto 1fr;
+        max-width: 60%;
+    }
+}
+
+.kk-hero-accent {
+    margin: 0;
+    font-family: var(--kk-serif);
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    font-style: italic;
+    line-height: 0.9;
+    color: var(--kk-orange);
+}
+
+.kk-hero-accent::after {
+    content: "";
+    display: inline-block;
+    width: 0.22em;
+    height: 0.22em;
+    margin-left: 0.12em;
+    border-radius: 50%;
+    background: var(--kk-orange);
+    vertical-align: 0.1em;
+}
+
+.kk-lead {
+    max-width: 30rem;
+    margin: 0;
+    color: var(--kk-muted);
+    font-size: 1rem;
+    line-height: 1.65;
+}
+
+.kk-hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem 1.25rem;
+    margin-top: 1.75rem;
+}
+
+.kk-link-arrow {
+    color: var(--kk-ink);
+    font-size: 0.8125rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-transform: uppercase;
+    text-underline-offset: 0.35em;
+}
+
+.kk-link-arrow:hover {
+    color: var(--kk-orange-text);
+}
+
+/* Indeks (01) (02) (03) */
+.kk-index {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 2rem;
+    margin: 2.5rem 0 0;
+    padding: 0;
+    list-style: none;
+    font-family: var(--kk-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.kk-index b {
+    color: var(--kk-orange-text);
+    font-weight: 600;
+}
+
+/* Pita berjalan: huruf raksasa berselang garis luar dan isi */
+.kk-ticker {
+    margin: clamp(3rem, 6vw, 4.5rem) calc(50% - 50vw) 0;
+    padding: 0.875rem 0;
+    border-block: 1px solid var(--kk-ink);
+    overflow: hidden;
+}
+
+.kk-ticker-track {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    width: max-content;
+    font-family: var(--kk-display);
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    line-height: 1;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.kk-ticker-track span:nth-child(4n + 1) {
+    color: transparent;
+    -webkit-text-stroke: 1.5px var(--kk-ink);
+}
+
+.kk-ticker-track span:nth-child(even) {
+    color: var(--kk-orange);
+    font-size: 0.6em;
+}
+
+/* Kepala seksi: (02) JUDUL ------ tautan */
+.kk-section-block {
+    padding-top: clamp(4rem, 9vw, 7rem);
+}
+
+.kk-sec-head {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.5rem 1.5rem;
+    align-items: end;
+    margin-bottom: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--kk-ink);
+}
+
+@media (min-width: 768px) {
+    .kk-sec-head { grid-template-columns: auto 1fr auto; }
+}
+
+.kk-sec-num {
+    align-self: start;
+    font-family: var(--kk-mono);
+    font-size: 0.75rem;
+    color: var(--kk-orange-text);
+}
+
+.kk-display {
+    margin: 0;
+    font-family: var(--kk-display);
+    font-size: clamp(2.75rem, 6.5vw, 5.25rem);
+    font-weight: 400;
+    line-height: 0.88;
+    text-transform: uppercase;
+}
+
+.kk-display .kk-italic {
+    color: var(--kk-orange-text);
+    font-size: 0.85em;
+}
+
+.kk-sec-head .kk-link-arrow {
+    grid-column: 1 / -1;
+    justify-self: start;
+}
+
+@media (min-width: 768px) {
+    .kk-sec-head .kk-link-arrow { grid-column: auto; justify-self: end; }
+}
+
+/* Etalase menu */
+.kk-featured {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(15rem, 78%);
+    gap: 1.5rem;
+    margin: 0 -0.75rem;
+    padding: 0 0.75rem 1rem;
+    list-style: none;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+}
+
+.kk-featured::-webkit-scrollbar {
+    display: none;
+}
+
+.kk-featured li {
+    scroll-snap-align: start;
+}
+
+@media (min-width: 768px) {
+    .kk-featured {
+        grid-auto-flow: row;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2.5rem 1.5rem;
+        margin: 0;
+        padding: 0;
+        overflow: visible;
+    }
+}
+
+.kk-dish {
+    display: block;
+    color: var(--kk-ink);
+    text-decoration: none;
+}
+
+.kk-dish:hover {
+    color: var(--kk-ink);
+}
+
+.kk-dish-img {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    background: var(--kk-paper-2);
+}
+
+.kk-featured li:nth-child(3n + 2) .kk-dish-img { background: var(--kk-orange-soft); }
+.kk-featured li:nth-child(3n) .kk-dish-img { background: #dedbd2; }
+
+.kk-dish-img img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    mix-blend-mode: multiply;
+    transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.kk-dish:hover .kk-dish-img img {
+    transform: scale(1.06);
+}
+
+/* Nomor urut di pojok gambar */
+.kk-dish-no {
+    position: absolute;
+    top: 0.75rem;
+    left: 0.75rem;
+    font-family: var(--kk-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.06em;
+}
+
+/* Tombol + muncul di gambar saat disorot */
+.kk-dish-plus {
+    position: absolute;
+    right: 0.75rem;
+    bottom: 0.75rem;
+    display: grid;
+    place-items: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    background: var(--kk-ink);
+    color: var(--kk-paper);
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.kk-dish:hover .kk-dish-plus {
+    background: var(--kk-orange);
+    color: var(--kk-ink);
+}
+
+.kk-dish-body {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-top: 0.875rem;
+    border-bottom: 1px solid var(--kk-ink);
+    padding-bottom: 0.625rem;
+}
+
+.kk-dish-name {
+    font-family: var(--kk-display);
+    font-size: 1.625rem;
+    line-height: 1;
+    text-transform: uppercase;
+    transition: color 0.2s ease;
+}
+
+.kk-dish:hover .kk-dish-name {
+    color: var(--kk-orange-text);
+}
+
+.kk-dish-meta {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 0.5rem;
+    color: var(--kk-muted);
+    font-family: var(--kk-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.kk-dish-price {
+    flex-shrink: 0;
+    font-family: var(--kk-mono);
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+/* Kenapa: kutipan besar + daftar bernomor */
+.kk-why {
+    display: grid;
+    gap: 2.5rem;
+}
+
+@media (min-width: 992px) {
+    .kk-why { grid-template-columns: 5fr 7fr; gap: 4rem; }
+}
+
+.kk-quote {
+    margin: 0;
+    font-family: var(--kk-serif);
+    font-size: clamp(2.25rem, 4.5vw, 3.75rem);
+    font-style: italic;
+    line-height: 1.02;
+    letter-spacing: -0.015em;
+}
+
+.kk-quote mark {
+    padding: 0 0.1em;
+    background: var(--kk-orange);
+    color: var(--kk-ink);
+}
+
+.kk-quote-by {
+    display: block;
+    margin-top: 1.25rem;
+    font-family: var(--kk-mono);
+    font-size: 0.75rem;
+    font-style: normal;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--kk-muted);
+}
+
+.kk-features {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid var(--kk-ink);
+}
+
+.kk-features li {
+    display: grid;
+    grid-template-columns: 2.5rem 1fr;
+    gap: 0.25rem 1rem;
+    padding: 1.25rem 0;
+    border-bottom: 1px solid var(--kk-ink);
+    transition: background-color 0.2s ease, padding 0.25s ease;
+}
+
+.kk-features li:hover {
+    padding-left: 0.75rem;
+    background: var(--kk-orange-soft);
+}
+
+.kk-features .kk-mono {
+    color: var(--kk-orange-text);
+    padding-top: 0.35rem;
+}
+
+.kk-features h3 {
+    margin: 0;
+    font-family: var(--kk-display);
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    font-weight: 400;
+    line-height: 1;
+    text-transform: uppercase;
+}
+
+.kk-features p {
+    grid-column: 2;
+    margin: 0;
+    color: var(--kk-muted);
+}
+
+.kk-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.375rem;
+    grid-column: 2;
+    margin-top: 0.5rem;
+}
+
+.kk-tags span {
+    padding: 0.25rem 0.5rem;
+    border: 1px solid var(--kk-ink);
+    font-family: var(--kk-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+/* Cara pesan: angka raksasa bergaris luar */
+.kk-steps-home {
+    display: grid;
+    gap: 2rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: step;
+}
+
+@media (min-width: 768px) {
+    .kk-steps-home {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0;
+    }
+
+    .kk-steps-home li + li {
+        padding-left: 1.5rem;
+        border-left: 1px solid var(--kk-ink);
+    }
+
+    .kk-steps-home li {
+        padding-right: 1.5rem;
+    }
+}
+
+.kk-steps-home li {
+    counter-increment: step;
+}
+
+.kk-steps-home li::before {
+    content: "0" counter(step);
+    display: block;
+    margin-bottom: 1rem;
+    font-family: var(--kk-display);
+    font-size: clamp(5rem, 10vw, 8rem);
+    line-height: 0.85;
+    color: transparent;
+    -webkit-text-stroke: 1.5px var(--kk-ink);
+    transition: color 0.3s ease;
+}
+
+.kk-steps-home li:hover::before {
+    color: var(--kk-orange);
+}
+
+.kk-steps-home h3 {
+    font-size: 1.125rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.kk-steps-home p {
+    margin: 0;
+    color: var(--kk-muted);
+}
+
+/* Ajakan penutup: blok oranye selebar layar */
+/* Selebar layar; isinya memakai .container agar sejajar dengan konten lain.
+   Margin bawah negatif = menutup jarak bawah <main>, sehingga blok oranye menempel ke footer. */
+.kk-cta {
+    margin: clamp(4rem, 9vw, 7rem) calc(50% - 50vw) -1.5rem;
+    padding: clamp(3.5rem, 8vw, 6rem) 0;
+    background: var(--kk-orange);
+    color: var(--kk-ink);
+}
+
+.kk-cta-inner {
+    display: grid;
+    gap: 2rem;
+    align-items: end;
+}
+
+@media (min-width: 992px) {
+    .kk-cta-inner { grid-template-columns: 1fr auto; }
+}
+
+.kk-cta .kk-display {
+    font-size: clamp(3.5rem, 11vw, 9rem);
+}
+
+.kk-cta .kk-display .kk-italic {
+    color: var(--kk-paper);
+}
+
+.kk-cta p {
+    max-width: 26rem;
+    margin: 1.25rem 0 0;
+    font-weight: 500;
+}
+
+.kk-cta .btn {
+    --bs-btn-hover-color: var(--kk-ink);
+    --bs-btn-hover-bg: var(--kk-paper);
+    --bs-btn-hover-border-color: var(--kk-paper);
+}
+
+/* Footer menempel ke blok oranye di beranda */
+.kk-theme main:has(.kk-cta) + footer {
+    margin-top: 0;
+}
+
+/* ---------- 9. Login dan daftar ---------- */
+.kk-auth-wrap {
+    padding: clamp(1.5rem, 4vw, 3rem) 0;
+}
+
+.kk-auth-card {
+    display: grid;
+    border: 1px solid var(--kk-ink);
+    background: var(--kk-card);
+}
+
+@media (min-width: 992px) {
+    .kk-auth-card { grid-template-columns: 1fr 1fr; }
+    .kk-auth-card-wide { grid-template-columns: 5fr 7fr; }
+}
+
+/* Panel kiri hitam: judul raksasa + gambar sampul */
+.kk-auth-side {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: clamp(1.5rem, 4vw, 2.5rem);
+    background: var(--kk-ink);
+    color: var(--kk-paper);
+    overflow: hidden;
+}
+
+.kk-auth-side .kk-mono {
+    color: var(--kk-orange);
+}
+
+.kk-auth-side-title {
+    margin: 0.75rem 0 0;
+    font-family: var(--kk-display);
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    line-height: 0.86;
+    text-transform: uppercase;
+}
+
+.kk-auth-side-title .kk-italic {
+    display: block;
+    margin-top: 0.5rem;
+    color: var(--kk-orange);
+    font-size: 0.5em;
+    line-height: 1;
+}
+
+/* Gambar sampul mini di panel kiri (hanya layar lebar) */
+.kk-auth-art {
+    display: none;
+    margin-top: auto;
+    padding-top: 2rem;
+}
+
+@media (min-width: 992px) {
+    .kk-auth-art { display: block; }
+}
+
+.kk-auth-art .kk-cover {
+    position: relative;
+    top: auto;
+    right: auto;
+    width: 100%;
+    max-width: none;
+    aspect-ratio: 5 / 4;
+    margin: 0;
+    padding-bottom: 6%;
+    border: 1px solid rgba(243, 240, 234, 0.25);
+}
+
+.kk-auth-art .kk-cover::before,
+.kk-auth-art .kk-cover::after {
+    top: 12%;
+    width: 52%;
+}
+
+.kk-auth-art .kk-glass {
+    transform: scale(0.72);
+    transform-origin: bottom center;
+}
+
+/* Daftar keuntungan di halaman daftar */
+.kk-perks {
+    display: none;
+    margin: 2rem 0 0;
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid rgba(243, 240, 234, 0.25);
+}
+
+@media (min-width: 768px) {
+    .kk-perks { display: block; }
+}
+
+.kk-perks li {
+    display: flex;
+    gap: 1rem;
+    padding: 0.875rem 0;
+    border-bottom: 1px solid rgba(243, 240, 234, 0.25);
+    font-weight: 500;
+}
+
+.kk-perks li span {
+    color: var(--kk-orange);
+    font-family: var(--kk-mono);
+    font-size: 0.75rem;
+    padding-top: 0.2rem;
+}
+
+.kk-auth-main {
+    padding: clamp(1.5rem, 5vw, 3.25rem);
+}
+
+@media (min-width: 992px) {
+    .kk-auth-main { align-self: center; }
+}
+
+.kk-auth-title {
+    margin-bottom: 0.5rem;
+    font-family: var(--kk-display);
+    font-size: clamp(2.75rem, 5vw, 4rem);
+    line-height: 0.9;
+    text-transform: uppercase;
+}
+
+.kk-auth-sub,
+.kk-auth-alt {
+    color: var(--kk-muted);
+}
+
+.kk-input {
+    min-height: 3.125rem;
+}
+
+/* Tombol Lihat/Sembunyikan password */
+.kk-password {
+    position: relative;
+}
+
+.kk-password .kk-input {
+    padding-right: 8.5rem;
+}
+
+.kk-password .kk-input.is-invalid {
+    background-image: none;
+}
+
+.kk-password-toggle {
+    position: absolute;
+    top: 50%;
+    right: 0.375rem;
+    padding: 0.35rem 0.625rem;
+    border: 1px solid var(--kk-ink);
+    border-radius: 0;
+    background: transparent;
+    color: var(--kk-ink);
+    font-family: var(--kk-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transform: translateY(-50%);
+}
+
+.kk-password-toggle:hover {
+    background: var(--kk-ink);
+    color: var(--kk-paper);
+}
+
+.kk-password-toggle-inline {
+    position: static;
+    transform: none;
+}
+
+/* Kotak persetujuan privasi */
+.kk-consent {
+    padding: 0.875rem 1rem 0.875rem 2.75rem;
+    border: 1px solid var(--kk-ink);
+    background: var(--kk-paper);
+}
+
+.kk-consent:has(.is-invalid) {
+    border-color: #b42318;
+    background: #fdecea;
+}
+
+/* ---------- 10. Animasi (mati otomatis bila pengguna meminta gerakan dikurangi) ---------- */
+@media (prefers-reduced-motion: no-preference) {
+    /* Judul hero muncul baris demi baris dari bawah */
+    .kk-hero-title span {
+        animation: kk-reveal 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+    }
+
+    .kk-hero-title span:nth-child(2) { animation-delay: 0.1s; }
+    .kk-hero-title span:nth-child(3) { animation-delay: 0.2s; }
+
+    .kk-cover {
+        animation: kk-fade 1s 0.25s ease both;
+    }
+
+    .kk-hero-foot {
+        animation: kk-fade 0.9s 0.45s ease both;
+    }
+
+    .kk-glass {
+        animation: kk-float 6s ease-in-out infinite;
+    }
+
+    .kk-ice {
+        animation: kk-bob 4s ease-in-out infinite;
+    }
+
+    .kk-ice-2 { animation-delay: -1.3s; }
+    .kk-ice-3 { animation-delay: -2.6s; }
+
+    .kk-badge-spin svg {
+        animation: kk-spin 20s linear infinite;
+    }
+
+    .kk-ticker-track {
+        animation: kk-ticker 35s linear infinite;
+    }
+}
+
+@keyframes kk-reveal {
+    from { opacity: 0; translate: 0 0.25em; }
+    to { opacity: 1; translate: 0 0; }
+}
+
+@keyframes kk-fade {
+    from { opacity: 0; translate: 0 16px; }
+    to { opacity: 1; translate: 0 0; }
+}
+
+@keyframes kk-float {
+    0%, 100% { translate: 0 0; }
+    50% { translate: 0 -8px; }
+}
+
+@keyframes kk-bob {
+    0%, 100% { translate: 0 0; }
+    50% { translate: 0 -5px; }
+}
+
+@keyframes kk-spin {
+    to { transform: rotate(360deg); }
+}
+
+@keyframes kk-ticker {
+    to { transform: translateX(-50%); }
+}
+
+.js-step {
+    min-width: 44px;
+}
